@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="weather-app.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Weather App</h1>
+        <input type="text" id="cityInput" placeholder="Enter city name">
+        <button onclick="getWeather()">Get Weather</button>
+        <div id="weatherResult"></div>
+    </div>
+    <script>
+    // Sample weather data for Haryana cities
+    const haryanaWeather = {
+        "chandigarh": { name: "Chandigarh", description: "Clear sky", temp: 32 },
+        "gurugram": { name: "Gurugram", description: "Partly cloudy", temp: 34 },
+        "faridabad": { name: "Faridabad", description: "Sunny", temp: 35 },
+        "panipat": { name: "Panipat", description: "Light rain", temp: 30 },
+        "hisar": { name: "Hisar", description: "Hot", temp: 38 },
+        "karnal": { name: "Karnal", description: "Humid", temp: 33 },
+        "sonipat": { name: "Sonipat", description: "Cloudy", temp: 31 },
+        "ambala": { name: "Ambala", description: "Windy", temp: 29 },
+        "yamunanagar": { name: "Yamunanagar", description: "Rainy", temp: 28 }
+    };
+
+    function getWeather() {
+        const cityInput = document.getElementById('cityInput').value.trim().toLowerCase();
+        const resultDiv = document.getElementById('weatherResult');
+        if (!cityInput) {
+            resultDiv.textContent = "Please enter a city name.";
+            return;
+        }
+        const data = haryanaWeather[cityInput];
+        if (data) {
+            resultDiv.innerHTML = `
+                <strong>${data.name}</strong><br>
+                ${data.description}<br>
+                Temp: ${data.temp}°C
+            `;
+        } else {
+            resultDiv.textContent = "City not found in Haryana sample data.";
+        }
+    }
+    </script>
+</body>
+</html>
